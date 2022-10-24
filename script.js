@@ -4,12 +4,15 @@ const btns = document.querySelectorAll('.btn');
 const player = document.querySelector('.playerScore');
 const computer = document.querySelector('.computerScore');
 const round = document.querySelector('.round');
+const reset = document.querySelector('.reset');
 
 const win = ['rockscissors', 'paperrock', 'scissorspaper'];
+const winCondition = 4;
 let playerScore = 0;
 let computerScore = 0;
 player.textContent = playerScore;
 computer.textContent = computerScore;
+
 
 const getComputerChoice = function() {
   const num = Math.trunc((Math.random() * 3) + 1);
@@ -23,16 +26,36 @@ const playRound = function(playerSelection,computerSelection) {
 
   if (win.includes(playerSelection + computerSelection)) {
     playerScore++;
+    if (playerScore > winCondition) endGame();
     return `Player wins! ${playerSelection} beats ${computerSelection}.`;
   }
 
   computerScore++;
-  return `You lose! ${computerSelection} beats ${playerSelection}.`;
+  if (computerScore > winCondition) endGame();
+  return `Computer wins! ${computerSelection} beats ${playerSelection}.`;  
 };
 
-btns.forEach(btn => btn.addEventListener('click', function() {
-  const roundResults = playRound(btn.textContent.toLowerCase(), getComputerChoice());
+const startGame = function() {
+  btns.forEach(btn => btn.addEventListener('click', function() {
+    const roundResults = playRound(btn.textContent.toLowerCase(), getComputerChoice());
+    player.textContent = playerScore;
+    computer.textContent = computerScore
+    round.textContent = roundResults;
+  }));
+}
+
+const endGame = function() {
+  btns.forEach(btn => btn.disabled = true);
+}
+
+const resetGame = function() {
+  btns.forEach(btn => btn.disabled = false);
+  playerScore = computerScore = 0;
   player.textContent = playerScore;
-  computer.textContent = computerScore
-  round.textContent = roundResults;
-}));
+  computer.textContent = computerScore;
+};
+
+reset.addEventListener('click', resetGame);
+
+startGame();
+
