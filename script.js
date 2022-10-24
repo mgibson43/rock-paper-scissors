@@ -1,8 +1,15 @@
 'use strict'
 
+const btns = document.querySelectorAll('.btn');
+const player = document.querySelector('.playerScore');
+const computer = document.querySelector('.computerScore');
+const round = document.querySelector('.round');
+
 const win = ['rockscissors', 'paperrock', 'scissorspaper'];
 let playerScore = 0;
 let computerScore = 0;
+player.textContent = playerScore;
+computer.textContent = computerScore;
 
 const getComputerChoice = function() {
   const num = Math.trunc((Math.random() * 3) + 1);
@@ -23,20 +30,9 @@ const playRound = function(playerSelection,computerSelection) {
   return `You lose! ${computerSelection} beats ${playerSelection}.`;
 };
 
-const game = function() {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt('Rock, Paper, or Scissors?').trim().toLowerCase();
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-  }
-  if (playerScore > computerScore) console.log("Player wins!");
-  else if (computerScore > playerScore) console.log("Computer wins!");
-  else console.log("Tie game!")
-  playerScore = computerScore = 0;
-}
-
-game();
-
-
-
-
+btns.forEach(btn => btn.addEventListener('click', function() {
+  const roundResults = playRound(btn.textContent.toLowerCase(), getComputerChoice());
+  player.textContent = playerScore;
+  computer.textContent = computerScore
+  round.textContent = roundResults;
+}));
