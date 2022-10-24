@@ -26,12 +26,12 @@ const playRound = function(playerSelection,computerSelection) {
 
   if (win.includes(playerSelection + computerSelection)) {
     playerScore++;
-    if (playerScore > winCondition) endGame();
+    if (playerScore > winCondition) return endGame(playerScore, computerScore);
     return `Player wins! ${playerSelection} beats ${computerSelection}.`;
   }
 
   computerScore++;
-  if (computerScore > winCondition) endGame();
+  if (computerScore > winCondition) return endGame(playerScore, computerScore);
   return `Computer wins! ${computerSelection} beats ${playerSelection}.`;  
 };
 
@@ -44,8 +44,16 @@ const startGame = function() {
   }));
 }
 
-const endGame = function() {
+const endGame = function(playerScore, computerScore) {
+  let message = '';
   btns.forEach(btn => btn.disabled = true);
+  if (playerScore > computerScore) {
+    message = `Player wins with a score of ${playerScore} to ${computerScore}!`;
+  } else {
+    message = `Computer wins with a score of ${computerScore} to ${playerScore}!`;
+  };
+  reset.classList.remove('hidden');
+  return message
 }
 
 const resetGame = function() {
@@ -53,6 +61,7 @@ const resetGame = function() {
   playerScore = computerScore = 0;
   player.textContent = playerScore;
   computer.textContent = computerScore;
+  reset.classList.add('hidden');
 };
 
 reset.addEventListener('click', resetGame);

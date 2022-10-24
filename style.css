@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #333;
+  color: #eee;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  gap: 60px;
+}
+
+.btns {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 8px 24px;
+  font-size: 24px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.round {
+  align-self: center;
+}
+
+.reset {
+  padding: 12px 30px;
+  align-self: center;
+  font-size: 30px;
+}
+
+.hidden {
+  opacity: 0;
+}
