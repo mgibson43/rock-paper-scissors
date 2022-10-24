@@ -36,12 +36,14 @@ button {
   display: flex;
   flex-direction: column;
   gap: 60px;
+  font-size: 40px;
 }
 
 .scores {
   display: flex;
   justify-content: center;
   gap: 60px;
+  font-size: 36px;
 }
 
 .round {

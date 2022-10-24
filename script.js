@@ -61,6 +61,7 @@ const resetGame = function() {
   playerScore = computerScore = 0;
   player.textContent = playerScore;
   computer.textContent = computerScore;
+  round.textContent = '';
   reset.classList.add('hidden');
 };
 
