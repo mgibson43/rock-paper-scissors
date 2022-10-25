@@ -1,6 +1,9 @@
 'use strict'
 
+const container = document.querySelector('.container');
+const btnsContainer = document.querySelector('.btns');
 const btns = document.querySelectorAll('.btn');
+const results = document.querySelector('.results');
 const player = document.querySelector('.playerScore');
 const computer = document.querySelector('.computerScore');
 const round = document.querySelector('.round');
@@ -37,7 +40,7 @@ const playRound = function(playerSelection,computerSelection) {
 
 const startGame = function() {
   btns.forEach(btn => btn.addEventListener('click', function() {
-    const roundResults = playRound(btn.textContent.toLowerCase(), getComputerChoice());
+    const roundResults = playRound(btn.id.toLowerCase(), getComputerChoice());
     player.textContent = playerScore;
     computer.textContent = computerScore
     round.textContent = roundResults;
@@ -46,7 +49,7 @@ const startGame = function() {
 
 const endGame = function(playerScore, computerScore) {
   let message = '';
-  btns.forEach(btn => btn.disabled = true);
+  btnsContainer.remove();
   if (playerScore > computerScore) {
     message = `Player wins with a score of ${playerScore} to ${computerScore}!`;
   } else {
@@ -57,12 +60,12 @@ const endGame = function(playerScore, computerScore) {
 }
 
 const resetGame = function() {
-  btns.forEach(btn => btn.disabled = false);
   playerScore = computerScore = 0;
   player.textContent = playerScore;
   computer.textContent = computerScore;
   round.textContent = '';
   reset.classList.add('hidden');
+  results.before(btnsContainer);
 };
 
 reset.addEventListener('click', resetGame);

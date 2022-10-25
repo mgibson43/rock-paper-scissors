@@ -9,7 +9,6 @@ body {
 
 button {
   border: none;
-  cursor: pointer;
 }
 
 .container {
@@ -22,14 +21,20 @@ button {
 
 .btns {
   display: flex;
-  gap: 40px;
+  gap: 90px;
   justify-content: center;
   align-items: center;
 }
 
 .btn {
-  padding: 8px 24px;
-  font-size: 24px;
+  border: solid 4px #eee;
+  padding: 36px 36px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.btn:hover {
+  padding: 44px 44px;
 }
 
 .results {
@@ -58,4 +63,5 @@ button {
 
 .hidden {
   opacity: 0;
+  visibility: 0;
 }
