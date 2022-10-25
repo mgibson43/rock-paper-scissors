@@ -39,6 +39,7 @@ const playRound = function(playerSelection,computerSelection) {
 };
 
 const startGame = function() {
+  reset.classList.add('hidden-left');
   btns.forEach(btn => btn.addEventListener('click', function() {
     const roundResults = playRound(btn.id.toLowerCase(), getComputerChoice());
     player.textContent = playerScore;
@@ -49,13 +50,13 @@ const startGame = function() {
 
 const endGame = function(playerScore, computerScore) {
   let message = '';
-  btnsContainer.remove();
+  btnsContainer.classList.add('hidden-top');
+  reset.classList.remove('hidden-left');
   if (playerScore > computerScore) {
     message = `Player wins with a score of ${playerScore} to ${computerScore}!`;
   } else {
     message = `Computer wins with a score of ${computerScore} to ${playerScore}!`;
   };
-  reset.classList.remove('hidden');
   return message
 }
 
@@ -64,8 +65,8 @@ const resetGame = function() {
   player.textContent = playerScore;
   computer.textContent = computerScore;
   round.textContent = '';
-  reset.classList.add('hidden');
-  results.before(btnsContainer);
+  btnsContainer.classList.remove('hidden-top');
+  reset.classList.add('hidden-left');
 };
 
 reset.addEventListener('click', resetGame);

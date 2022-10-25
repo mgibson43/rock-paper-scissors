@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 body {
   background-color: #333;
   color: #eee;
@@ -24,6 +28,7 @@ button {
   gap: 90px;
   justify-content: center;
   align-items: center;
+  transition: all 1.2s;
 }
 
 .btn {
@@ -47,8 +52,12 @@ button {
 .scores {
   display: flex;
   justify-content: center;
-  gap: 60px;
+  gap: 100px;
   font-size: 36px;
+}
+
+.score {
+  text-align: center;
 }
 
 .round {
@@ -57,11 +66,20 @@ button {
 
 .reset {
   padding: 12px 30px;
+  cursor: pointer;
   align-self: center;
   font-size: 30px;
+  transition: all 1.2s;
 }
 
-.hidden {
+.hidden-left {
+  transform: translate(-999px, 0px);
+  overflow: hidden;
   opacity: 0;
-  visibility: 0;
+}
+
+.hidden-top {
+  transform: translate(0px, -999px);
+  overflow: hidden;
+  opacity: 0;
 }
